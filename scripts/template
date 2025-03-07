@@ -1,0 +1,10 @@
+// @ts-nocheck
+import { {{FUNCTION_NAME}} } from "{{FUNCTION_PATH}}"
+
+try {
+  Script.setShortcutOutput({{FUNCTION_NAME}}(args.plainTexts));
+} catch (e) {
+  Script.setShortcutOutput(`Erreur: ${e?.message || "Un erreur c'est produite"}`);
+}
+
+Script.complete();
