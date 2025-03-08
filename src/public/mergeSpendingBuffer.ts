@@ -1,4 +1,5 @@
 import { EMPTY, LINE_BREAK } from "../lib/constants";
+import { extractSectionDateFormSectionTitle } from "../lib/functions/extractSectionDateFromSectionTitle";
 import { getDateByShortcutFormat } from "../lib/functions/getDateByShortcutFormat";
 import { getSectionByDate } from "../lib/functions/getSectionByDate";
 import { getSectionTotal } from "../lib/functions/getSectionTotal";
@@ -6,7 +7,7 @@ import { getSectionTotal } from "../lib/functions/getSectionTotal";
 type MergeSpendingBufferInput = [string, string, string];
 
 function getSectionTitle(key: string, sections: string[]) {
-  const value = key.split(" ").slice(0, 3).join(" ");
+  const value = extractSectionDateFormSectionTitle(key);
   const total = getSectionTotal(sections);
   const amount = total.toFixed(total.toString().split(".").length > 1 ? 2 : 0);
   return value + ` (${amount}€)` + LINE_BREAK;

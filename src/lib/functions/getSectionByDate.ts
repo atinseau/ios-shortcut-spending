@@ -1,4 +1,5 @@
 import { EMPTY, LINE_BREAK } from "../constants";
+import { extractSectionDateFormSectionTitle } from "./extractSectionDateFromSectionTitle";
 import { isShortcutDate } from "./isShortcutDate";
 
 export const getSectionByDate = (buffer: string) => {
@@ -14,8 +15,12 @@ export const getSectionByDate = (buffer: string) => {
       if (!formattedValue.length) {
         return acc;
       }
-      if (isShortcutDate(formattedValue)) {
-        acc[formattedValue] = [];
+
+      if (
+        isShortcutDate(formattedValue) &&
+        !acc[extractSectionDateFormSectionTitle(formattedValue)]
+      ) {
+        acc[extractSectionDateFormSectionTitle(formattedValue)] = [];
       } else {
         const dateKey = Object.keys(acc).pop();
         if (dateKey) {

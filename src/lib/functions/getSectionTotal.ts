@@ -1,6 +1,8 @@
+import { formatNumber } from "./formatNumber";
+
 export function getSectionTotal(data: string[]) {
   return Object.values(data).reduce((acc, value) => {
-    const formattedValue = parseFloat(value.replace(",", "."));
+    const formattedValue = formatNumber(value);
     return acc + formattedValue;
   }, 0);
 }
